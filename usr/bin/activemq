@@ -1,0 +1,21 @@
+#!/bin/bash
+
+#	-Djetty.host="127.0.0.1" \
+#	-Djetty.port="8161" \
+#	-Dlog4j.debug \
+#	-Dlog4j.configuration="file:/activemq/conf/log4j.properties" \
+
+EXECUTABLE="java \
+	-Xms1G -Xmx1G -Xss8M \
+	-Dactivemq.home=/activemq \
+	-Dactivemq.base=/activemq \
+	-Dactivemq.conf=/activemq/conf \
+	-Dactivemq.store.dir=/activemq/data \
+	-Dactivemq.data=/activemq/data \
+	-Djava.io.tmpdir=/activemq/tmp \
+	-cp /activemq/lib/:/activemq/conf/ \
+	-jar /activemq/bin/activemq.jar $@"
+
+echo "EXECUTING $EXECUTABLE"
+
+$EXECUTABLE
